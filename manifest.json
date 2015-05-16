@@ -1,0 +1,22 @@
+{
+	"name": "OdSkype",
+	"manifest_version": 2,
+	"version": "1.0",
+	"description": "It makes OneDrive and Skype available as chrome app.",
+	"app": {
+    	"background": {
+      		"scripts": ["popup.js"]
+    	}	
+    },
+    "icons": {
+    	"16": "skype-16.png",
+    	"24": "skype-24.png",
+    	"48": "skype-48.png",
+    	"64": "skype-64.png",
+    	"128": "skype-128.png"
+  	},
+	"permissions": [
+    "*://one-drive.live.com/*",
+	"webview"
+  ]
+}
