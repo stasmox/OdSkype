@@ -5,18 +5,18 @@
 	"description": "It makes OneDrive and Skype available as chrome app.",
 	"app": {
     	"background": {
-      		"scripts": ["app.js"]
+      		"scripts": ["js/app.js", "js/jquery-2.1.4.min.js"]
     	}	
     },
     "icons": {
-    	"16": "icons/skype-16.png",
-    	"24": "icons/skype-24.png",
-    	"48": "icons/skype-48.png",
-    	"64": "icons/skype-64.png",
-    	"128": "icons/skype-128.png"
+    	"16": "resources/icons/skype-16.png",
+    	"24": "resources/icons/skype-24.png",
+    	"48": "resources/icons/skype-48.png",
+    	"64": "resources/icons/skype-64.png",
+    	"128": "resources/icons/skype-128.png"
   	},
 	"permissions": [
-    "*://one-drive.live.com/*",
+    "*://*.live.com/*",
 	"webview"
   ]
 }
