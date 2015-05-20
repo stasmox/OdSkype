@@ -4,6 +4,5 @@ It makes OneDrive and Skype available as chrome app.
 ##TODO:
 * Handle network disconnect/reconnect and reload application.
 * Add notifications.
-* Handle urls in chat window and open it in browser
 * Close chat window on escape
 * Move application to system tray.
