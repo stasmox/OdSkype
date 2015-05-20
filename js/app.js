@@ -29,6 +29,10 @@ chrome.app.runtime.onLaunched.addListener(function() {
                     file: 'js/inject.js'
                 });
             });
+            wv.addEventListener('newwindow', function(e) {
+                e.preventDefault();
+                window.open(e.targetUrl);
+            });
         };
     });
 });

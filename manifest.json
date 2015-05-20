@@ -17,6 +17,6 @@
   	},
 	"permissions": [
     "*://*.live.com/*",
-	"webview"
+	"webview", "background", "notifications", "browser"
   ]
 }
