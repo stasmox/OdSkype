@@ -17,6 +17,8 @@
   	},
 	"permissions": [
     "*://*.live.com/*",
-	"webview", "background", "notifications", "browser"
+	"webview", 
+  //"background", //Temorary disable until chrome 45 is released https://github.com/clicman/OdSkype/issues/1
+  "notifications", "browser"
   ]
 }
