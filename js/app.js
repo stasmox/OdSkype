@@ -31,7 +31,9 @@ chrome.app.runtime.onLaunched.addListener(function() {
             });
             wv.addEventListener('newwindow', function(e) {
                 e.preventDefault();
-                chrome.browser.openTab({url: e.targetUrl});
+                chrome.browser.openTab({
+                    url: e.targetUrl
+                });
             });
         };
     });

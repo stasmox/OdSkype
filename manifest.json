@@ -1,24 +1,19 @@
 {
-	"name": "OdSkype",
-	"manifest_version": 2,
-	"version": "1.5",
-	"description": "It makes OneDrive and Skype available as chrome app.",
-	"app": {
-    	"background": {
-      		"scripts": ["js/app.js", "js/jquery-2.1.4.min.js"]
-    	}	
+    "name": "OdSkype",
+    "manifest_version": 2,
+    "version": "1.5",
+    "description": "It makes OneDrive and Skype available as chrome app.",
+    "app": {
+        "background": {
+            "scripts": ["js/jquery-2.1.4.min.js", "js/app.js"]
+        }
     },
     "icons": {
-    	"16": "resources/icons/skype-16.png",
-    	"24": "resources/icons/skype-24.png",
-    	"48": "resources/icons/skype-48.png",
-    	"64": "resources/icons/skype-64.png",
-    	"128": "resources/icons/skype-128.png"
-  	},
-	"permissions": [
-    "*://*.live.com/*",
-	"webview", 
-  //"background", //Temorary disable until chrome 45 is released https://github.com/clicman/OdSkype/issues/1
-  "notifications", "browser"
-  ]
+        "16": "resources/icons/skype-16.png",
+        "24": "resources/icons/skype-24.png",
+        "48": "resources/icons/skype-48.png",
+        "64": "resources/icons/skype-64.png",
+        "128": "resources/icons/skype-128.png"
+    },
+    "permissions": ["*://*.live.com/*", "webview", "background", "notifications", "browser"]
 }
