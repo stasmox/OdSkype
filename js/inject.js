@@ -10,4 +10,23 @@ var interval = setInterval(function() {
     	$("textarea").attr("style") !== "width: 83% !important;") {
         	$("textarea").attr("style", "width: 83% !important;");
     }
+
+    if ($("#chat_view").attr("style") === "display: block;"){
+    	$("a.BackButton").attr("title", "Escape to close");
+    }
+
 }, 250);
+
+$(document).on("keyup", function (e) {
+	switch(e.which) {
+		case 27:
+			console.log(e.which);
+			if ($("#chat_view").attr("style") === "display: block;"){
+				$( "#chat_view").fadeOut( "fast", function() {
+					$("#chat_view").attr("style", "display: none;");
+					$("#rec_conv").attr("style", "display: block;");
+				});
+			}
+			break;
+	}
+});
