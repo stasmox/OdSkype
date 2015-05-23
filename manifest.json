@@ -5,7 +5,7 @@
     "description": "It makes OneDrive and Skype available as chrome app.",
     "app": {
         "background": {
-            "scripts": ["js/jquery-2.1.4.min.js", "js/app.js"]
+            "scripts": ["js/app.js"]
         }
     },
     "icons": {
