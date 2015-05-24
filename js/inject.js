@@ -25,11 +25,26 @@ function simulatedClick(target, options) {
     target.dispatchEvent(event);
 }
 $("#c_base").append("<h3 id=\"app_loading_message\" style=\"z-index: -1; position: absolute; margin-top: 50px;margin-left: 20px;\">Loading...</h3>");
+$("body").append('<div id="notificationContainer" class="NotificationContainer" persist="1" role="alert" aria-live="assertive" aria-atomic="false" aria-haspopup="true" style="position: absolute; padding: 0px; margin: 0px; height: 100%; width: 100%; top: 0px; left: 0px;"></div>');
 //Initially hide header and onedrive view.
 $("#c_header").attr("style", "opacity:0;");
 $(".centerColumn").attr("style", "opacity:0;");
 //Add notifications handler
-var observer = null;
+var notificationContainer = document.getElementById("notificationContainer");
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length > 0) {
+            console.log("USER: " + $("#notificationContainer .UserTitle").text());
+            console.log("MESSAGE: " + $("#notificationContainer .UserContent").text());
+        }
+    });
+});
+var config = {
+    attributes: true,
+    childList: true,
+    characterData: true
+};
+observer.observe(notificationContainer, config);
 //Poll events
 var interval = setInterval(function() {
     //Load skype sidebar as soon as it possible
@@ -54,36 +69,14 @@ var interval = setInterval(function() {
     if ($("#chat_view").attr("style") === "display: block;") {
         $("a.BackButton").attr("title", "Escape to close");
     }
-    //Wait for notification center created and observe it
-    if (observer === null && $("#notificationContainer .UserTitle").text().length>0) {
-        console.log("USER: "+$("#notificationContainer .UserTitle").text());
-        console.log("MESSAGE: "+$("#notificationContainer .UserContent").text());        
-        
-        var notificationContainer = document.getElementById("notificationContainer");        
-        observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.addedNodes.length > 0) {
-                   console.log("USER: "+$("#notificationContainer .UserTitle").text());
-                    console.log("MESSAGE: "+$("#notificationContainer .UserContent").text());
-                }
-            });
-        });
-        var config = {
-            attributes: true,
-            childList: true,
-            characterData: true
-        };
-        observer.observe(notificationContainer, config);
-    }
 }, 250);
 $(document).on("keyup", function(e) {
     switch (e.which) {
         case 27:
             console.log(e.which);
             if ($("#chat_view").attr("style") === "display: block;") {
-                $("#chat_view").fadeOut("fast", function() {
-                    $("#chat_view").attr("style", "display: none;");
-                    $("#rec_conv").attr("style", "display: block;");
+                simulatedClick($("a.BackButton").get(0), {
+                    type: "click"
                 });
             }
             break;
