@@ -28,6 +28,8 @@ $("#c_base").append("<h3 id=\"app_loading_message\" style=\"z-index: -1; positio
 //Initially hide header and onedrive view.
 $("#c_header").attr("style", "opacity:0;");
 $(".centerColumn").attr("style", "opacity:0;");
+//Add notifications handler
+var observer = null;
 //Poll events
 var interval = setInterval(function() {
     //Load skype sidebar as soon as it possible
@@ -51,6 +53,27 @@ var interval = setInterval(function() {
     //Add tooltips on chat
     if ($("#chat_view").attr("style") === "display: block;") {
         $("a.BackButton").attr("title", "Escape to close");
+    }
+    //Wait for notification center created and observe it
+    if (observer === null && $("#notificationContainer .UserTitle").text().length>0) {
+        console.log("USER: "+$("#notificationContainer .UserTitle").text());
+        console.log("MESSAGE: "+$("#notificationContainer .UserContent").text());        
+        
+        var notificationContainer = document.getElementById("notificationContainer");        
+        observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                   console.log("USER: "+$("#notificationContainer .UserTitle").text());
+                    console.log("MESSAGE: "+$("#notificationContainer .UserContent").text());
+                }
+            });
+        });
+        var config = {
+            attributes: true,
+            childList: true,
+            characterData: true
+        };
+        observer.observe(notificationContainer, config);
     }
 }, 250);
 $(document).on("keyup", function(e) {
