@@ -13,7 +13,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
         },
         resizable: false,
         singleton: true
-    }, function(win) {        
+    }, function(win) {
         win.contentWindow.onload = function() {
             var wv = this.document.querySelector("webview");
             wv.addEventListener("loadcommit", function(e) {
@@ -36,7 +36,17 @@ chrome.app.runtime.onLaunched.addListener(function() {
                 chrome.browser.openTab({
                     url: e.targetUrl
                 });
-            });            
+            });
+            chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+                console.log(request);
+                var options = {
+                    type: "basic",
+                    title: request.user_name,
+                    message: request.message,
+                    iconUrl: request.avatar || "resources/icons/skype-48.png"
+                };
+                chrome.notifications.create(options);
+            });
         };
     });
 });
