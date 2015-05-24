@@ -15,7 +15,7 @@
         "64": "resources/icons/skype-64.png",
         "128": "resources/icons/skype-128.png"
     },
-    "permissions": ["*://*.live.com/*","*://*.skype.com/*", "webview", "background", "notifications", "browser"],
+    "permissions": ["*://*.live.com/*","*://*.skype.com/*","https://p.sfx.ms/ic/bluemanm.png", "webview", "background", "notifications", "browser"],
     "externally_connectable": {"matches": ["*://*.live.com/*"]
 }
 }

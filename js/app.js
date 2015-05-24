@@ -37,15 +37,29 @@ chrome.app.runtime.onLaunched.addListener(function() {
                     url: e.targetUrl
                 });
             });
+            //Listen to messages of notificationss
             chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 console.log(request);
                 var options = {
                     type: "basic",
-                    title: request.user_name,
+                    title: request.title,
                     message: request.message,
-                    iconUrl: request.avatar || "resources/icons/skype-48.png"
+                    iconUrl: request.avatar
                 };
-                chrome.notifications.create(options);
+                //If somwhow avatar is undefined
+                if (!options.iconUrl) {
+                    options.iconUrl = "resources/icons/skype-48.png";
+                    chrome.notifications.create(options);
+                } else {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", options.iconUrl);
+                    xhr.responseType = "blob";
+                    xhr.onload = function() {
+                        options.iconUrl = window.URL.createObjectURL(this.response);
+                        chrome.notifications.create(options);
+                    };
+                    xhr.send();
+                }
             });
         };
     });

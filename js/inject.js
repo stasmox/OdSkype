@@ -39,9 +39,6 @@ var observer = new MutationObserver(function(mutations) {
             var message = $(mutation.addedNodes[mutation.addedNodes.length - 1]).
             find(".UserContent").text();
             var avatar = $('.RecentConversationsControl_Item').find("img[alt='"+userName+"']").attr("src");
-            console.log("USER: " + userName);
-            console.log("MESSAGE: " + message);
-            console.log("AVATAR: "+ avatar);
             var options = {
                 type: "basic",
                 title: userName,
