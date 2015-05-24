@@ -34,8 +34,10 @@ var notificationContainer = document.getElementById("notificationContainer");
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
         if (mutation.addedNodes.length > 0) {
-            console.log("USER: " + $("#notificationContainer .UserTitle").text());
-            console.log("MESSAGE: " + $("#notificationContainer .UserContent").text());
+            console.log("USER: " + $(mutation.addedNodes[mutation.addedNodes.length-1]).
+                find(".UserTitle").text());
+            console.log("MESSAGE: " + $(mutation.addedNodes[mutation.addedNodes.length-1]).
+                find(".UserContent").text());
         }
     });
 });
